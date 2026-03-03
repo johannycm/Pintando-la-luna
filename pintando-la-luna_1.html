@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pintando la Luna - Infografía Invierno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #e8f4f8 0%, #d0e8f2 50%, #b8dce8 100%);
+            color: #1a3a4a;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #0f3a52;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-subtitle {
+            font-size: 1.3rem;
+            color: #1b5e7a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .header-author {
+            font-size: 0.95rem;
+            color: #4a7a8f;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* ===== DECORACIÓN INVIERNO ===== */
+        .snowflakes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .snowflake {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: float 6s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotateZ(0deg); }
+            50% { transform: translateY(-20px) rotateZ(180deg); }
+        }
+
+        /* ===== SECCIONES SUPERPUESTAS (CAPAS) ===== */
+        .section-wrapper {
+            position: relative;
+            margin-bottom: -40px;
+            perspective: 1200px;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-wrapper:nth-child(1) { animation-delay: 0.2s; }
+        .section-wrapper:nth-child(2) { animation-delay: 0.3s; }
+        .section-wrapper:nth-child(3) { animation-delay: 0.4s; }
+        .section-wrapper:nth-child(4) { animation-delay: 0.5s; }
+
+        .section {
+            background: linear-gradient(135deg, #1e5a7a 0%, #2d7a9e 100%);
+            padding: 50px 40px;
+            margin: 0 20px;
+            position: relative;
+            transform: skewY(-2deg);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border-radius: 0px;
+            clip-path: polygon(0 5%, 100% 0%, 100% 95%, 0 100%);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: skewY(-2deg) translateY(-5px);
+        }
+
+        .section-alt {
+            background: linear-gradient(135deg, #5eb3d6 0%, #7ec8e3 100%);
+        }
+
+        /* ===== CONTENIDO SECCIÓN ===== */
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+            transform: skewY(2deg);
+        }
+
+        .section-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-number {
+            font-size: 5rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.3);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-text {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .section-text strong {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        .section-right {
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-circle {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2),
+                        inset 0 1px 20px rgba(255, 255, 255, 0.1);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .decorative-dots {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .dot {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+        }
+
+        .dot-lg { width: 20px; height: 20px; }
+        .dot-md { width: 12px; height: 12px; }
+        .dot-sm { width: 6px; height: 6px; }
+
+        /* ===== CARDS PARA SECCIÓN 1 ===== */
+        .tropes-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            transform: skewY(2deg);
+        }
+
+        .trope-item {
+            background: rgba(255, 255, 255, 0.15);
+            border-left: 4px solid #ffd700;
+            padding: 20px;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+        }
+
+        .trope-item strong {
+            color: #ffd700;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .trope-item p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        /* ===== TABLA COMPARATIVA ===== */
+        .comparison-grid {
+            transform: skewY(2deg);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .comparison-header {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            font-weight: 700;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .comparison-cell {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            color: rgba(255, 255, 255, 0.95);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .comparison-cell.highlight {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2.2rem;
+            }
+
+            .section-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .section-right {
+                min-height: 200px;
+            }
+
+            .icon-circle {
+                width: 200px;
+                height: 200px;
+                font-size: 4rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .section-number {
+                font-size: 3rem;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 30px 20px;
+                margin: 0 10px;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            margin-top: 100px;
+            padding: 40px 20px;
+            color: #2d5f75;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer p {
+            margin-bottom: 8px;
+        }
+
+        .footer-emoji {
+            font-size: 1.5rem;
+            margin: 0 5px;
+        }
+
+        /* ===== EFECTO NIEVE SUTIL ===== */
+        .winter-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(94, 179, 214, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(30, 90, 122, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="winter-glow"></div>
+    
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="snowflakes">
+                <div class="snowflake" style="left: 10%; top: 20%; animation-delay: 0s;">❄️</div>
+                <div class="snowflake" style="left: 80%; top: 30%; animation-delay: 1s;">❄️</div>
+                <div class="snowflake" style="left: 50%; top: 50%; animation-delay: 2s;">❄️</div>
+                <div class="snowflake" style="left: 20%; top: 70%; animation-delay: 1.5s;">❄️</div>
+                <div class="snowflake" style="left: 90%; top: 60%; animation-delay: 2.5s;">❄️</div>
+            </div>
+            <h1 class="header-title">Pintando la Luna</h1>
+            <p class="header-subtitle">Karin Kallmaker</p>
+            <p class="header-author">Un Romance Sáfico en la Tormenta</p>
+        </div>
+
+        <!-- SECCIÓN 1: EL GANCHO -->
+        <div class="section-wrapper">
+            <div class="section">
+                <div class="section-content">
+                    <div class="section-left">
+                        <div class="section-number">1</div>
+                        <h2 class="section-title">El Gancho: La Tormenta Perfecta</h2>
+                        <div class="tropes-container">
+                            <div class="trope-item">
+                                <strong>🎭 Strangers to Lovers + Forced Proximity</strong>
+                                <p>Jackie queda atrapada en una tormenta de nieve y es rescatada por Leah. El aislamiento en una cabaña crea tensión instantánea.</p>
+                            </div>
+                            <div class="trope-item">
+                                <strong>❄️ Ice Queen meets Sunshine</strong>
+                                <p>Leah lidia con el duelo; Jackie está perdida en su carrera. Se salvan mutuamente de formas complejas y reales.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-right">
+                        <div class="decorative-dots">
+                            <div class="dot dot-lg" style="top: 10%; right: 15%;"></div>
+                            <div class="dot dot-md" style="top: 30%; left: 10%;"></div>
+                            <div class="dot dot-sm" style="bottom: 20%; right: 25%;"></div>
+                            <div class="dot dot-lg" style="bottom: 15%; left: 20%;"></div>
+                        </div>
+                        <div class="icon-circle">❄️</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: ÁNGULO BISEXUAL -->
+        <div class="section-wrapper">
+            <div class="section section-alt">
+                <div class="section-content">
+                    <div class="section-left">
+                        <div class="section-number">2</div>
+                        <h2 class="section-title">El Ángulo Bisexual/Queer</h2>
+                        <p class="section-text">
+                            <strong>Identidad en Construcción:</strong> Jackie no "lo sabe todo". El libro explora esa sensación de "falta algo" hasta que la conexión con otra mujer le da sentido. Es un retrato honesto del autodescubrimiento tardío.
+                        </p>
+                        <p class="section-text">
+                            <strong>Representación Histórica:</strong> Karin Kallmaker es la maestra del romance lésbico. Leer a una de las "madres fundadoras" de la literatura sáfica moderna.
+                        </p>
+                    </div>
+                    <div class="section-right">
+                        <div class="decorative-dots">
+                            <div class="dot dot-md" style="top: 15%; right: 20%;"></div>
+                            <div class="dot dot-lg" style="bottom: 25%; left: 15%;"></div>
+                            <div class="dot dot-sm" style="top: 50%; right: 10%;"></div>
+                        </div>
+                        <div class="icon-circle">🌈</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: EL CONFLICTO -->
+        <div class="section-wrapper">
+            <div class="section">
+                <div class="section-content">
+                    <div class="section-left">
+                        <div class="section-number">3</div>
+                        <h2 class="section-title">El Conflicto: Duelo vs. Deseo</h2>
+                        <p class="section-text">
+                            <strong>El Peso del Pasado:</strong> Leah perdió a su gran amor, Sharla. El libro explora cómo abrir el corazón sin traicionar la memoria de quién fue.
+                        </p>
+                        <p class="section-text">
+                            <strong>Arte como Lenguaje:</strong> La pintura de Leah es como ella "sale del armario" ante el mundo. No explosivamente, sino gradualmente, artísticamente.
+                        </p>
+                    </div>
+                    <div class="section-right">
+                        <div class="decorative-dots">
+                            <div class="dot dot-lg" style="top: 20%; left: 15%;"></div>
+                            <div class="dot dot-md" style="bottom: 30%; right: 20%;"></div>
+                            <div class="dot dot-sm" style="top: 60%; left: 10%;"></div>
+                            <div class="dot dot-lg" style="bottom: 10%; right: 15%;"></div>
+                        </div>
+                        <div class="icon-circle">🎨</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 4: TABLA COMPARATIVA -->
+        <div class="section-wrapper">
+            <div class="section section-alt">
+                <div class="section-content">
+                    <div class="section-left">
+                        <div class="section-number">4</div>
+                        <h2 class="section-title">¿Por Qué Gana?</h2>
+                        <p class="section-text" style="margin-bottom: 25px;">
+                            Comparado con otros romances queer, "Pintando la Luna" destaca por su profundidad emocional y autenticidad.
+                        </p>
+                    </div>
+                    <div class="section-right">
+                        <div class="decorative-dots">
+                            <div class="dot dot-md" style="top: 10%; right: 20%;"></div>
+                            <div class="dot dot-lg" style="bottom: 20%; left: 15%;"></div>
+                            <div class="dot dot-sm" style="top: 50%; right: 15%;"></div>
+                        </div>
+                        <div class="icon-circle">✨</div>
+                    </div>
+                </div>
+                
+                <div class="comparison-grid" style="transform: skewY(2deg); margin-top: 30px;">
+                    <div class="comparison-header">Característica</div>
+                    <div class="comparison-header" style="background: rgba(255, 215, 0, 0.25); color: #ffd700;">Pintando la Luna</div>
+                    <div class="comparison-header">Otros Romances Queer</div>
+
+                    <div class="comparison-cell"><strong>Vibe</strong></div>
+                    <div class="comparison-cell highlight">Atmosférica, acogedora, invernal</div>
+                    <div class="comparison-cell">Urbana o escolar</div>
+
+                    <div class="comparison-cell"><strong>Drama</strong></div>
+                    <div class="comparison-cell highlight">Adulto, maduro, emocional</div>
+                    <div class="comparison-cell">Juvenil o superficial</div>
+
+                    <div class="comparison-cell"><strong>Pacing</strong></div>
+                    <div class="comparison-cell highlight">Slow burn intenso</div>
+                    <div class="comparison-cell">Rápido e instantáneo</div>
+
+                    <div class="comparison-cell"><strong>Final</strong></div>
+                    <div class="comparison-cell highlight">HEA satisfactorio</div>
+                    <div class="comparison-cell">Incierto o agridulce</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>
+                <span class="footer-emoji">🌙</span>
+                Una infografía para la selección perfecta del club de lectura
+                <span class="footer-emoji">❄️</span>
+            </p>
+            <p style="font-size: 0.85rem; margin-top: 12px; color: #4a7a8f;">
+                Karin Kallmaker • Literatura Sáfica • Romance LGBTQ+
+            </p>
+        </div>
+    </div>
+</body>
+</html>
